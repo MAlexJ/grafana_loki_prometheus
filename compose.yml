@@ -10,6 +10,8 @@ services:
       - grafana_data:/var/lib/grafana
     environment:
       - GF_LOG_LEVEL=error
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_SECURITY_ALLOW_EMBEDDING=true
 
   prometheus:
     image: prom/prometheus
