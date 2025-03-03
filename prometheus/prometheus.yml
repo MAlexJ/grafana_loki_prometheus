@@ -12,9 +12,11 @@ scrape_configs:
         labels:
           host: 'Docker (102)'
 
-  - job_name: "Traefik Cadvisor (107)"
+  - job_name: "Traefik Prometheus & Cadvisor (107)"
     static_configs:
-      - targets: ["10.10.0.107:9323"]
+      - targets:
+          - "10.10.0.107:9323"
+          - "10.10.0.107:8082"
         labels:
           host: 'Traefik (107)'
 
