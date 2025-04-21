@@ -5,8 +5,8 @@ on:
       - main
 
 jobs:
-  update-dashboards:
-    name: Update Dashboards
+  provision_grafana:
+    name: "Provision Grafana"
     runs-on: self-hosted
     steps:
     - name: Checkout repository
@@ -20,7 +20,7 @@ jobs:
         UNIX_TIMESTAMP=$(date +%s)
         echo "UNIX_TIMESTAMP=$UNIX_TIMESTAMP" >> $GITHUB_ENV
 
-    - name: Run update_dashboards.sh
+    - name: Update Dashboards
       env:
         DASHBOARD_DIR: "./grafana/dashboards"
         GRAFANA_URL: ${{ secrets.GRAFANA_URL }}
@@ -30,10 +30,19 @@ jobs:
       run: |
         chmod +x grafana/update_dashboards.sh
         ./grafana/update_dashboards.sh
+    - name: Update Contact Points
+      env:
+        DASHBOARD_DIR: "./grafana/dashboards"
+        GRAFANA_URL: ${{ secrets.GRAFANA_URL }}
+        GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
+        SECRET_DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      run: |
+        chmod +x grafana/update_contact_points.sh
+        ./grafana/update_contact_points.sh
   deploy:
     name: Deploy Grafana
     runs-on: self-hosted
-    needs: update-dashboards
+    needs: provision_grafana
     env:
       GRAFANA_HOST: "10.10.0.108"
       DOCKER_CONTEXT_NAME: grafana-ctx

@@ -1,0 +1,10 @@
+{
+	"name": "Discord",
+	"uid": "discord",
+	"type": "discord",
+	"settings": {
+		"url": "__DISCORD_WEBHOOK_URL__",
+		"use_discord_username": false
+	},
+	"disableResolveMessage": false
+}
