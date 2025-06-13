@@ -68,8 +68,10 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "movie_metadata_update_success_total",
+          "editorMode": "code",
+          "expr": "increase(movie_metadata_update_success_total[1h])",
           "legendFormat": "Successes",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -178,8 +180,10 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "movie_metadata_processed_total",
+          "editorMode": "code",
+          "expr": "increase(movie_metadata_processed_total[1h])",
           "legendFormat": "Processed",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -233,8 +237,10 @@
       "pluginVersion": "12.0.1",
       "targets": [
         {
-          "expr": "movie_metadata_notion_movies_fetched",
+          "editorMode": "code",
+          "expr": "avg_over_time(movie_metadata_notion_movies_fetched[1h])\n",
           "legendFormat": "Fetched",
+          "range": true,
           "refId": "A"
         }
       ],
@@ -404,5 +410,5 @@
   "timezone": "browser",
   "title": "Movie Metadata Updater Metrics",
   "uid": "2a511f5e-07af-44f4-b826-ea0b1df01ddf",
-  "version": 2
+  "version": 3
 }
