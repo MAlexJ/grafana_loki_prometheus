@@ -12,6 +12,12 @@ scrape_configs:
         labels:
           host: 'Docker (102)'
 
+  - job_name: "notion-movie-metadata-updater Prometheus (102)"
+    static_configs:
+      - targets: ["10.10.0.102:9181"]
+        labels:
+          host: 'notion-movie-metadata-updater (102)'
+
   - job_name: "Traefik Prometheus & Cadvisor (107)"
     static_configs:
       - targets:
