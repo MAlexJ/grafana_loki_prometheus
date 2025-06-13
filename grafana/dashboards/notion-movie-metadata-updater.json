@@ -337,6 +337,51 @@
       ],
       "title": "Update Duration (seconds)",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "edsei728schkwd"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 6,
+      "options": {
+        "dedupStrategy": "none",
+        "enableInfiniteScrolling": false,
+        "enableLogDetails": true,
+        "prettifyLogMessage": false,
+        "showCommonLabels": false,
+        "showLabels": false,
+        "showTime": true,
+        "sortOrder": "Descending",
+        "wrapLogMessage": false
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "edsei728schkwd"
+          },
+          "direction": "backward",
+          "editorMode": "code",
+          "expr": "{container_name=\"notion-movie-metadata-updater\"} | json | line_format \"{{.message}}\\t{{.imdb_id}}\\t{{.title}}\"",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Logs",
+      "type": "logs"
     }
   ],
   "preload": false,
@@ -359,5 +404,5 @@
   "timezone": "browser",
   "title": "Movie Metadata Updater Metrics",
   "uid": "2a511f5e-07af-44f4-b826-ea0b1df01ddf",
-  "version": 1
+  "version": 2
 }
